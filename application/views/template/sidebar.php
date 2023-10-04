@@ -30,7 +30,7 @@
 	<li class="nav-item <?php if($this->uri->segment(1)=="book") {echo "active";}?> ">
 		<a class="nav-link" href="<?= site_url('book') ?>">
 			<i class="fas fa-fw fa-chart-area"></i>
-			<span>Book</span></a>
+			<span>Books</span></a>
 	</li>
 
 	<!-- Nav Item - Tables -->

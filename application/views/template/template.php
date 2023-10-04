@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 	<link href="<?= base_url('public/css/sb-admin-2.min.css') ?>" rel="stylesheet">
-	<link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+	<link href="<?= base_url('public/css/datatable.css') ?>" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -31,19 +31,14 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
 					<div class="card p-3">
 						<?= $content ?>
 					</div>
-
 				</div>
-				<!-- /.container-fluid -->
 
 			</div>
 
-			<!-- Footer -->
 			<?php $this->load->view('template/footer') ?>
-			<!-- End of Footer -->
 
 		</div>
 	</div>
@@ -51,11 +46,17 @@
 	<!-- Include JavaScript files at the end of the body -->
 	<script src="<?= base_url('public/vendor/jquery/jquery.min.js') ?> "></script>
 	<script src="<?= base_url('public/js/sb-admin-2.min.js') ?>"></script>
-	<script src="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js"></script>
+	<script src="<?= base_url('public/js/datatable.js') ?>"></script>
     <script src="<?= base_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js') ?> "></script>
 
     <!-- Core plugin JavaScript-->
     <script src="<?= base_url('public/vendor/jquery-easing/jquery.easing.min.js') ?>"></script>
+	 <!-- Page level plugins -->
+	 <script src="<?= base_url('public/vendor/chart.js/Chart.min.js') ?>"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="<?= base_url('public/js/demo/chart-area-demo.js') ?>"></script>
+	<script src="<?= base_url('public/js/demo/chart-pie-demo.js') ?>"></script>
 	<?php if (isset($script)) { $this->load->view('script'); } ?>
 
     <!-- Custom scripts for all pages-->
