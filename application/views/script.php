@@ -10,6 +10,10 @@
                     { data: 'id' },
                     { data: 'title' },
                     { data: 'author' },
+                    { data: 'category_id' },
+                    { data: 'publisher_id' },
+                    { data: 'price' },
+                    { data: 'stock' },
                     { data: 'description' },
 					{
                         data: null,
@@ -44,9 +48,13 @@
 				data: { id: id },
 				success: function(response) {
 					const data = JSON.parse(response)
-					$('#title').val(data.title)
 					$('#id').val(data.id)
+					$('#title').val(data.title)
 					$('#author').val(data.author)
+					$('#category_id').val(data.category_id)
+					$('#publisher_id').val(data.publisher_id)
+					$('#stock').val(data.stock)
+					$('#price').val(data.price)
 					$('#description').val(data.description)
 					$('#update').modal('toggle')
 				}
@@ -166,3 +174,63 @@
 	}
 
 </script>
+
+<!-- Script User -->
+
+<script>
+        $(document).ready(function() {
+            $('#user').DataTable({
+                ajax: {
+					url : '<?php echo site_url('user/getData'); ?>',
+					dataSrc:""
+				},
+                columns: [
+                    { data: 'id' },
+                    { data: 'username' },
+                    { data: 'email' },
+                    { data: 'role' },
+                    { data: 'image' },
+					{
+                        data: null,
+                        render: function (data, type, row) {
+                            return '<button class="btn btn-danger mr-1" onclick="deleteRowUser(' + row.id + ')">Delete</button><button class="btn btn-secondary" onclick="getRowUser(' + row.id + ')">Edit</button>';
+                        }
+                    },
+                ],
+            });
+        });
+
+	function deleteRowUser(id) {
+		if (confirm("Are you sure you want to delete this row?")) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('user/delete'); ?>',
+				method: 'POST',
+				data: { id: id },
+				success: function(response) {
+					alert('Data berhasil dihapus');
+					$('#user').DataTable().ajax.reload();
+				}
+			});
+		}
+	}
+
+	function getRowUser(id) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('user/getDataId/'); ?>',
+				method: 'post',
+				data: { id: id },
+				success: function(response) {
+					const data = JSON.parse(response)
+					$('#id').val(data.id)
+					$('#username').val(data.username)
+					$('#email').val(data.email)
+					$('#role').val(data.role)
+					$('#update-user').modal('toggle')
+				}
+			});
+	}
+
+</script>
+

@@ -28,6 +28,32 @@
 							<input type="text" class="form-control" name="author">
 						</div>
 						<div class="form-group">
+							<label for="exampleInputPassword1">Category</label>
+							<select class="custom-select" name="category_id">
+								<?php foreach ($category as $value) { ?>
+									<option value="<?php echo $value->id; ?>"><?php echo $value->category; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Publisher</label>
+							<select class="custom-select" name="publisher_id">
+								<?php foreach ($publisher as $value) { ?>
+									<option value="<?php echo $value->id; ?>">
+										<?php echo $value->name; ?>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Stock</label>
+							<input type="number" class="form-control" name="stock">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Price</label>
+							<input type="number" class="form-control" name="price">
+						</div>
+						<div class="form-group">
 							<label for="exampleFormControlTextarea1">Description</label>
 							<textarea class="form-control" name="description" rows="3"></textarea>
 						</div>
@@ -64,6 +90,34 @@
 							<input type="text" class="form-control" name="author" id="author">
 						</div>
 						<div class="form-group">
+							<label for="exampleInputPassword1">Category</label>
+							<select class="custom-select" name="category_id" id="category_id">
+								<?php foreach ($category as $value) { ?>
+									<option value="<?php echo $value->id; ?>">
+										<?php echo $value->category; ?>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Publisher</label>
+							<select class="custom-select" name="publisher_id" id="publisher_id">
+								<?php foreach ($publisher as $value) { ?>
+									<option value="<?php echo $value->id; ?>">
+										<?php echo $value->name; ?>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Stock</label>
+							<input type="number" class="form-control" name="stock" id="stock">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Price</label>
+							<input type="number" class="form-control" name="price" id="price">
+						</div>
+						<div class="form-group">
 							<label for="exampleFormControlTextarea1">Description</label>
 							<textarea class="form-control" name="description" id="description" rows="3"></textarea>
 						</div>
@@ -83,6 +137,10 @@
 				<th>ID</th>
 				<th>Title</th>
 				<th>Author</th>
+				<th>Category</th>
+				<th>Publisher</th>
+				<th>Price</th>
+				<th>Stock</th>
 				<th>Description</th>
 				<th>Action</th>
 			</tr>

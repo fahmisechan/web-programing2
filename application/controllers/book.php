@@ -3,10 +3,16 @@ class Book extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('BookModel');
+        $this->load->model('CategoryModel');
+        $this->load->model('PublisherModel');
+		if($this->session->userdata('role') != 'admin')
+      	show_404();
     }
 
     public function index() {
-        $this->load->view('template/template', ['content' => $this->load->view('book/book','', true) , 'script' => TRUE]);
+		$category = $this->CategoryModel->getData();
+		$publisher = $this->PublisherModel->getData();
+        $this->load->view('template/template', ['content' => $this->load->view('book/book',['category' => $category , 'publisher' => $publisher], true) , 'script' => TRUE]);
     }
 
 	public function getData() {
@@ -14,11 +20,16 @@ class Book extends CI_Controller {
 		echo json_encode($query);
     }
 	public function create() {
-		$data = array(
+		$data = [
 			'title' =>  $this->input->post('title'),
 			'author' => $this->input->post('author'),
+			'category_id' => $this->input->post('category_id'),
+			'publisher_id' => $this->input->post('publisher_id'),
+			'stock' => $this->input->post('stock'),
+			'price' => $this->input->post('price'),
 			'description' =>  $this->input->post('description')
-			);
+		];
+
 		$this->BookModel->create_data($data);
 		redirect('book');
     }
@@ -31,14 +42,23 @@ class Book extends CI_Controller {
 		echo json_encode($data);
 	}
 	public function update(){
-		$data = array(
-			'id' =>  $this->input->post('id'),
-			'title' =>  $this->input->post('title'),
-			'author' => $this->input->post('author'),
-			'description' =>  $this->input->post('description')
-			);
-		$data = $this->BookModel->update($data);
-		redirect('book');
+		try{
+			$data = [
+				'id' =>  $this->input->post('id'),
+				'title' =>  $this->input->post('title'),
+				'author' => $this->input->post('author'),
+				'category_id' => $this->input->post('category_id'),
+				'publisher_id' => $this->input->post('publisher_id'),
+				'stock' => $this->input->post('stock'),
+				'price' => $this->input->post('price'),
+				'description' =>  $this->input->post('description')
+			];
+			
+			$data = $this->BookModel->update($data);
+			redirect('book');
+		}catch(Exception $e){
+			echo $e;
+		}
 	}
 }
 ?>

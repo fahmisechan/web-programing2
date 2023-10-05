@@ -3,6 +3,8 @@ class Publisher extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('PublisherModel');
+		if($this->session->userdata('role') != 'admin')
+      	show_404();
     }
 
     public function index() {

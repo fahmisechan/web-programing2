@@ -5,7 +5,7 @@
 		<div class="sidebar-brand-icon rotate-n-15">
 			<i class="fas fa-laugh-wink"></i>
 		</div>
-		<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+		<div class="sidebar-brand-text mx-3">Toko Buku</div>
 	</a>
 
 	<!-- Divider -->
@@ -28,32 +28,38 @@
 
 		<li class="nav-item <?php if($this->uri->segment(1)=="transaction-book") {echo "active";}?> ">
 		<a class="nav-link" href="<?= site_url('transaction-book') ?>">
-			<i class="fas fa-fw fa-chart-area"></i>
+			<i class="fas fa-fw fa-receipt"></i>
 			<span>Transaction Book</span></a>
 		</li>
 
 	<!-- Heading -->
-	<div class="sidebar-heading">
+	<div class="sidebar-heading <?php if($this->session->userdata('role') != 'admin') { echo "d-none"; } ?>">
 		Master
 	</div>
 
 	<!-- Nav Item - Charts -->
-	<li class="nav-item <?php if($this->uri->segment(1)=="book") {echo "active";}?> ">
+	<li class="nav-item <?php if($this->uri->segment(1)=="book") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
 		<a class="nav-link" href="<?= site_url('book') ?>">
-			<i class="fas fa-fw fa-chart-area"></i>
+			<i class="fas fa-fw fa-book"></i>
 			<span>Books</span></a>
 	</li>
 
-	<li class="nav-item <?php if($this->uri->segment(1)=="category") {echo "active";}?> ">
+	<li class="nav-item <?php if($this->uri->segment(1)=="category") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
 		<a class="nav-link" href="<?= site_url('category') ?>">
-			<i class="fas fa-fw fa-chart-area"></i>
+			<i class="fas fa-fw fa-layer-group"></i>
 			<span>Categories</span></a>
 	</li>
 
-	<li class="nav-item <?php if($this->uri->segment(1)=="publisher") {echo "active";}?> ">
+	<li class="nav-item <?php if($this->uri->segment(1)=="publisher") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
 		<a class="nav-link" href="<?= site_url('publisher') ?>">
-			<i class="fas fa-fw fa-chart-area"></i>
+			<i class="fas fa-fw fa-building"></i>
 			<span>Publisher</span></a>
+	</li>
+
+	<li class="nav-item <?php if($this->uri->segment(1)=="user") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
+		<a class="nav-link" href="<?= site_url('user') ?>">
+			<i class="fas fa-fw fa-users"></i>
+			<span>Users</span></a>
 	</li>
 
 	<!-- Nav Item - Tables -->
@@ -63,8 +69,15 @@
 			<span>Tables</span></a>
 	</li> -->
 
-	<!-- Divider -->
-	<hr class="sidebar-divider d-none d-md-block">
+	<div class="sidebar-heading <?php if($this->session->userdata('role') != 'admin') { echo "d-none"; } ?>">
+		Report
+	</div>
+
+	<li class="nav-item <?php if($this->uri->segment(1)=="report") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
+		<a class="nav-link" href="<?= site_url('report') ?>">
+			<i class="fas fa-fw fa-chart-line"></i>
+			<span>Report</span></a>
+	</li>
 
 	<!-- Sidebar Toggler (Sidebar) -->
 	<div class="text-center d-none d-md-inline">
