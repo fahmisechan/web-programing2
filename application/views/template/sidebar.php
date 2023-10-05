@@ -18,8 +18,19 @@
 			<span>Dashboard</span></a>
 	</li>
 
-	<!-- Divider -->
-	<hr class="sidebar-divider">
+		<!-- Divider -->
+		<hr class="sidebar-divider">
+
+		<!-- Heading -->
+		<div class="sidebar-heading">
+			Transaction
+		</div>
+
+		<li class="nav-item <?php if($this->uri->segment(1)=="transaction-book") {echo "active";}?> ">
+		<a class="nav-link" href="<?= site_url('transaction-book') ?>">
+			<i class="fas fa-fw fa-chart-area"></i>
+			<span>Transaction Book</span></a>
+		</li>
 
 	<!-- Heading -->
 	<div class="sidebar-heading">
@@ -31,6 +42,18 @@
 		<a class="nav-link" href="<?= site_url('book') ?>">
 			<i class="fas fa-fw fa-chart-area"></i>
 			<span>Books</span></a>
+	</li>
+
+	<li class="nav-item <?php if($this->uri->segment(1)=="category") {echo "active";}?> ">
+		<a class="nav-link" href="<?= site_url('category') ?>">
+			<i class="fas fa-fw fa-chart-area"></i>
+			<span>Categories</span></a>
+	</li>
+
+	<li class="nav-item <?php if($this->uri->segment(1)=="publisher") {echo "active";}?> ">
+		<a class="nav-link" href="<?= site_url('publisher') ?>">
+			<i class="fas fa-fw fa-chart-area"></i>
+			<span>Publisher</span></a>
 	</li>
 
 	<!-- Nav Item - Tables -->

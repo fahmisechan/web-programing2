@@ -31,7 +31,7 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<div class="card p-3">
+					<div class="card p-3 border-left-primary">
 						<?= $content ?>
 					</div>
 				</div>
