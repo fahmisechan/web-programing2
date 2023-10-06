@@ -24,7 +24,8 @@ class Auth extends CI_Controller{
 		  if($password == $user->password){
 			$session = array(
 			  'authenticated'=>true,
-			  'username'=>$user->username, 
+			  'id' => $user->id,
+			  'username'=> $user->username, 
 			  'role'=>$user->role
 			);
 			$this->session->set_userdata($session);

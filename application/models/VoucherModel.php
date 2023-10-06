@@ -25,8 +25,26 @@ class VoucherModel extends CI_Model {
 			return null;
 		}
 	}
+	public function getDataName($name){
+		$this->db->where('name', $name);
+		$query = $this->db->get('vouchers');
+		if ($query->num_rows() > 0) {
+			return $query->row(); // For a single row as an object
+		} else {
+			return null;
+		}
+	}
 	public function update($data){
 		$this->db->where('id', $data['id']);
 		return $this->db->update('vouchers', $data);
+	}
+	public function getVoucher($voucher){
+		$this->db->where(['name' => $voucher , 'amount >' => 0]);
+		$query = $this->db->get('vouchers');
+		if ($query->num_rows() > 0) {
+			return 'berhasil'; // For a single row as an object
+		} else {
+			return 'gagal';
+		}
 	}
 }

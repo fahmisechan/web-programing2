@@ -304,8 +304,26 @@
 		})
 
 		$('#payment').keyup(function (e){
-			const total = $('#total').val();
+			let total = $('#total').val();
 			$('#return').val(e.target.value - total)
+		})
+
+		$('#check').click((e) => {
+			e.preventDefault();
+			let voucher = $('#voucher-name').val();
+			$.ajax({
+				url: '<?php echo site_url('transactionBook/checkVoucher/'); ?>',
+				method: 'post',
+				data: { voucher: voucher },
+				success: function(response) {
+					$('#alert-voucher').text('Selamat Anda mendapatkan diskon')
+				},
+				error:function(response){
+					$('#alert-voucher').text('Diskon tidak ada')
+					$('#voucher-name').val('')
+				}
+			});
+
 		})
 </script>
 

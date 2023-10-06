@@ -44,60 +44,65 @@
 		<tr>
 			<th scope="col">id</th>
 			<th scope="col">Name</th>
-			<th scope="col">Amount</th>
+			<th scope="col">Qty</th>
 			<th scope="col">Price</th>
 			<th scope="col">Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($this->cart->contents() as $index => $item): ?>
+		<?php 
+		$item_number = 0;
+		foreach ($this->cart->contents() as $index => $item): $item_number++;?>
 		<tr>
-			<td><?php echo $item['id']; ?></td>
+			<td><?php echo $item_number; ?></td>
 			<td><?php echo $item['name']; ?></td>
 			<td><?php echo $item['qty']; ?></td>
-			<td><?php echo $item['price']; ?></td>
+			<td><?php echo $item['price'].' / pcs'; ?></td>
 			<td><a href="<?php echo base_url('transactionBook/remove/' . $item['rowid']); ?>">Remove</a></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
 <hr>
+<form action="<?php echo base_url(). 'transactionBook/create'; ?>" method="post">
 <div class="row">
 	<div class="col-sm-3">
 		<div class="form-group">
 			<label for="exampleInputPassword1">Total</label>
-			<input type="number" class="form-control" name="amount" id="total" readonly value="<?php echo $this->cart->total() ?>">
+			<input type="number" class="form-control" name="total" id="total" readonly value="<?php echo $this->cart->total() ?>">
 		</div>
 	</div>
 	<div class="col-sm-3">
 		<div class="form-group">
 			<label for="exampleInputPassword1">Payment</label>
-			<input type="number" class="form-control" name="payment" id="payment">
+			<input type="number" class="form-control" name="payment" id="payment" required>
 		</div>
 	</div>
 	<div class="col-sm-3">
 		<div class="form-group">
 			<label for="exampleInputPassword1">Return</label>
-			<input type="number" class="form-control" name="return"  id="return">
+			<input type="number" class="form-control" name="return"  id="return" readonly>
 		</div>
 	</div>
 	<div class="col-sm-3">
 		<div class="form-group">
 			<label for="exampleInputPassword1">Customer</label>
-			<input type="text" class="form-control" name="customer">
+			<input type="text" class="form-control" name="customer" required>
 		</div>
 	</div>
 	<div class="col-sm-5">
 		<div class="form-group">
 			<label>Voucher</label>
 			<input type="text" class="form-control" name="voucher" id="voucher-name">
+			<p class="mt-1" id="alert-voucher"></p>
 		</div>
 	</div>
 	<div class="col-sm-2">
 		<div class="form-group">
-			<button class="btn btn-primary mt-4">Check</button>
+			<button class="btn btn-primary mt-4" id="check">Check</button>
 		</div>
 	</div>
 </div>
-	<button class="btn btn-primary mt-4" type="submit">Submit</button>
+	<button class="btn btn-primary" type="submit">Submit</button>
 </div>
+</form>
