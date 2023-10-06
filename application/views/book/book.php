@@ -137,11 +137,11 @@
 				<th>ID</th>
 				<th>Title</th>
 				<th>Author</th>
-				<th>Category</th>
-				<th>Publisher</th>
+				<!-- <th>Category</th> -->
+				<!-- <th>Publisher</th> -->
 				<th>Price</th>
 				<th>Stock</th>
-				<th>Description</th>
+				<!-- <th>Description</th> -->
 				<th>Action</th>
 			</tr>
 		</thead>

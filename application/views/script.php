@@ -10,11 +10,11 @@
                     { data: 'id' },
                     { data: 'title' },
                     { data: 'author' },
-                    { data: 'category_id' },
-                    { data: 'publisher_id' },
+                    // { data: 'category_id' },
+                    // { data: 'publisher_id' },
                     { data: 'price' },
                     { data: 'stock' },
-                    { data: 'description' },
+                    // { data: 'description' },
 					{
                         data: null,
                         render: function (data, type, row) {
