@@ -87,6 +87,17 @@
 			<input type="text" class="form-control" name="customer">
 		</div>
 	</div>
+	<div class="col-sm-5">
+		<div class="form-group">
+			<label>Voucher</label>
+			<input type="text" class="form-control" name="voucher" id="voucher-name">
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<div class="form-group">
+			<button class="btn btn-primary mt-4">Check</button>
+		</div>
+	</div>
 </div>
 	<button class="btn btn-primary mt-4" type="submit">Submit</button>
 </div>

@@ -4,8 +4,6 @@ class TransactionBook extends CI_Controller {
         parent::__construct();
         $this->load->model('BookModel');
 		$this->load->library('cart');
-		if($this->session->userdata('role') != 'admin')
-      	show_404();
     }
 
     public function index() {
