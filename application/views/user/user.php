@@ -17,7 +17,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?php echo base_url(). 'book/create'; ?>" method="post">
+				<form action="<?php echo base_url(). 'user/create'; ?>" method="post">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Username</label>
@@ -29,7 +29,7 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Email</label>
-							<input type="text" class="form-control" name="email">
+							<input type="email" class="form-control" name="email">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Role</label>
@@ -58,8 +58,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?php echo base_url(). 'book/update'; ?>" method="post">
+				<form action="<?php echo base_url(). 'user/update'; ?>" method="post">
 					<div class="modal-body">
+						<input type="text" class="form-control" name="id" id="id" hidden>
+						<input type="text" class="form-control" name="password" id="password" hidden>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Username</label>
 							<input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp">

@@ -18,10 +18,10 @@ class User extends CI_Controller {
 	public function create() {
 		$data = array(
 			'username' =>  $this->input->post('username'),
-			'password' => $this->input->post('password'),
+			'password' => md5($this->input->post('password')),
 			'role' => $this->input->post('role'),
 			'email' => $this->input->post('email'),
-			'description' =>  $this->input->post('description')
+			'image' =>  $this->input->post('image')
 			);
 		$this->UserModel->create_data($data);
 		redirect('user');
@@ -38,10 +38,9 @@ class User extends CI_Controller {
 		$data = array(
 			'id' =>  $this->input->post('id'),
 			'username' =>  $this->input->post('username'),
-			'password' => $this->input->post('password'),
 			'role' => $this->input->post('role'),
 			'email' => $this->input->post('email'),
-			'description' =>  $this->input->post('description')
+			'image' =>  $this->input->post('image')
 			);
 		$data = $this->UserModel->update($data);
 		redirect('user');

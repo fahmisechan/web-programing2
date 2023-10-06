@@ -3,13 +3,14 @@ class Auth extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('UserModel');
+		$this->load->library('cart');
 	  }
 
 	public function index(){
-	if($this->session->userdata('authenticated')) // Jika user sudah login (Session authenticated ditemukan)
-		redirect('dashboard'); // Redirect ke page home
-
-	$this->load->view('auth/login'); 
+		if($this->session->userdata('authenticated')){
+			redirect('dashboard'); // Redirect ke page home
+		}
+		$this->load->view('auth/login'); 
 	}
 
 	public function postLogin(){
@@ -37,6 +38,7 @@ class Auth extends CI_Controller{
 
 	public function logout(){
 		$this->session->sess_destroy();
+		$this->cart->destroy();
 		redirect('auth');
 	}
 	public function register(){

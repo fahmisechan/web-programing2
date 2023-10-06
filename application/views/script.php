@@ -234,3 +234,78 @@
 
 </script>
 
+<!-- Script Voucher -->
+
+<script>
+        $(document).ready(function() {
+            $('#voucher').DataTable({
+                ajax: {
+					url : '<?php echo site_url('voucher/getData'); ?>',
+					dataSrc:""
+				},
+                columns: [
+                    { data: 'id' },
+                    { data: 'name' },
+                    { data: 'start_date' },
+                    { data: 'end_date' },
+                    { data: 'amount' },
+                    { data: 'discount' },
+					{
+                        data: null,
+                        render: function (data, type, row) {
+                            return '<button class="btn btn-danger mr-1" onclick="deleteRowVoucher(' + row.id + ')">Delete</button><button class="btn btn-secondary" onclick="getRowVoucher(' + row.id + ')">Edit</button>';
+                        }
+                    },
+                ],
+            });
+        });
+
+	function deleteRowVoucher(id) {
+		if (confirm("Are you sure you want to delete this row?")) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('voucher/delete'); ?>',
+				method: 'POST',
+				data: { id: id },
+				success: function(response) {
+					alert('Data berhasil dihapus');
+					$('#voucher').DataTable().ajax.reload();
+				}
+			});
+		}
+	}
+
+	function getRowVoucher(id) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('voucher/getDataId/'); ?>',
+				method: 'post',
+				data: { id: id },
+				success: function(response) {
+					const data = JSON.parse(response)
+					$('#id').val(data.id)
+					$('#name').val(data.name)
+					$('#start_date').val(data.start_date)
+					$('#end_date').val(data.end_date)
+					$('#amount').val(data.amount)
+					$('#discount').val(data.discount)
+					$('#update-voucher').modal('toggle')
+				}
+			});
+	}
+
+</script>
+
+<!-- Script Transaction Book -->
+
+<script>
+        $(document).ready(function() {
+            $('.select2').select2();
+		})
+
+		$('#payment').keyup(function (e){
+			const total = $('#total').val();
+			$('#return').val(e.target.value - total)
+		})
+</script>
+

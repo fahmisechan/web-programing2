@@ -26,8 +26,8 @@
 			Transaction
 		</div>
 
-		<li class="nav-item <?php if($this->uri->segment(1)=="transaction-book") {echo "active";}?> ">
-		<a class="nav-link" href="<?= site_url('transaction-book') ?>">
+		<li class="nav-item <?php if($this->uri->segment(1)=="transactionBook") {echo "active";}?> ">
+		<a class="nav-link" href="<?= site_url('transactionBook') ?>">
 			<i class="fas fa-fw fa-receipt"></i>
 			<span>Transaction Book</span></a>
 		</li>
@@ -54,6 +54,12 @@
 		<a class="nav-link" href="<?= site_url('publisher') ?>">
 			<i class="fas fa-fw fa-building"></i>
 			<span>Publisher</span></a>
+	</li>
+
+	<li class="nav-item <?php if($this->uri->segment(1)=="voucher") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
+		<a class="nav-link" href="<?= site_url('voucher') ?>">
+			<i class="fas fa-fw fa-credit-card"></i>
+			<span>Voucher</span></a>
 	</li>
 
 	<li class="nav-item <?php if($this->uri->segment(1)=="user") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
