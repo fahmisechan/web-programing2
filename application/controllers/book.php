@@ -6,7 +6,7 @@ class Book extends CI_Controller {
         $this->load->model('CategoryModel');
         $this->load->model('PublisherModel');
 		if($this->session->userdata('role') != 'admin')
-      	show_404();
+      		redirect('auth');
     }
 
     public function index() {

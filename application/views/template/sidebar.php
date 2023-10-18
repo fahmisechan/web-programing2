@@ -32,6 +32,12 @@
 			<span>Transaction Book</span></a>
 		</li>
 
+		<li class="nav-item <?php if($this->uri->segment(1)=="transactionList") {echo "active";}?> ">
+		<a class="nav-link" href="<?= site_url('transactionList') ?>">
+			<i class="fas fa-fw fa-list"></i>
+			<span>Transaction List</span></a>
+		</li>
+
 	<!-- Heading -->
 	<div class="sidebar-heading <?php if($this->session->userdata('role') != 'admin') { echo "d-none"; } ?>">
 		Master

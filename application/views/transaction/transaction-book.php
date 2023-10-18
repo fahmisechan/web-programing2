@@ -46,6 +46,7 @@
 			<th scope="col">Name</th>
 			<th scope="col">Qty</th>
 			<th scope="col">Price</th>
+			<th scope="col">Sub total</th>
 			<th scope="col">Action</th>
 		</tr>
 	</thead>
@@ -58,6 +59,7 @@
 			<td><?php echo $item['name']; ?></td>
 			<td><?php echo $item['qty']; ?></td>
 			<td><?php echo $item['price'].' / pcs'; ?></td>
+			<td><?php echo $item['price'] * $item['qty']; ?></td>
 			<td><a href="<?php echo base_url('transactionBook/remove/' . $item['rowid']); ?>">Remove</a></td>
 		</tr>
 		<?php endforeach; ?>

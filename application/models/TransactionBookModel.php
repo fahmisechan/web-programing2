@@ -6,14 +6,16 @@ class TransactionBookModel extends CI_Model {
     }
 	
     public function getData() {
-		$query = $this->db->get('publisher');
+		$query = $this->db->get('transactions');
         return $query->result();
     }
 	public function createTransactionBook($data){
 		$this->db->insert('transaction_book',$data);
 	}
 	public function createTransactions($data){
-		$this->db->insert('transactions',$data);
+		$query = $this->db->insert('transactions',$data);
+		return $query;
+
 	}
 	public function delete($id){
 		$this->db->where('id',$id);
@@ -21,12 +23,22 @@ class TransactionBookModel extends CI_Model {
 	}
 	public function getDataId($id){
 		$this->db->where('id', $id);
-		$query = $this->db->get('publisher');
+		$query = $this->db->get('transactions');
 		if ($query->num_rows() > 0) {
 			return $query->row(); // For a single row as an object
 		} else {
 			return null;
 		}
+	}
+	public function getDataCode($code){
+		$this->db->where('code', $code);
+		$query = $this->db->get('transactions');
+		return $query->row(); // For a single row as an object
+	}
+	public function getDataCodeBook($code){
+		$this->db->where('code', $code);
+		$query = $this->db->get('transaction_book');
+		return $query->result_array(); // For a single row as an object
 	}
 	public function update($data){
 		$this->db->where('id', $data['id']);

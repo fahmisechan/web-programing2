@@ -25,6 +25,7 @@ class Auth extends CI_Controller{
 			$session = array(
 			  'authenticated'=>true,
 			  'id' => $user->id,
+			  'user' => $user,
 			  'username'=> $user->username, 
 			  'role'=>$user->role
 			);

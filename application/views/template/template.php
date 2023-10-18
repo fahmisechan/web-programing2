@@ -16,6 +16,8 @@
         rel="stylesheet">
 	<link href="<?= base_url('public/css/sb-admin-2.min.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('public/css/datatable.css') ?>" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">	
+	<link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">	
 </head>
 
 <body id="page-top">
@@ -46,6 +48,10 @@
 
 	<!-- Include JavaScript files at the end of the body -->
 	<script src="<?= base_url('public/vendor/jquery/jquery.min.js') ?> "></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.flash.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.print.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="<?= base_url('public/js/sb-admin-2.min.js') ?>"></script>
 	<script src="<?= base_url('public/js/datatable.js') ?>"></script>

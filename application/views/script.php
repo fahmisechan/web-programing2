@@ -6,6 +6,10 @@
 					url : '<?php echo site_url('book/getData'); ?>',
 					dataSrc:""
 				},
+				dom: 'Bfrtip',
+				buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
                 columns: [
                     { data: 'id' },
                     { data: 'title' },
@@ -325,5 +329,69 @@
 			});
 
 		})
+</script>
+
+<!-- Script Transaction List -->
+
+<script>
+        $(document).ready(function() {
+            $('#transaction-list').DataTable({
+                ajax: {
+					url : '<?php echo site_url('transactionList/getData'); ?>',
+					dataSrc:""
+				},
+                columns: [
+                    { data: 'id' },
+                    { data: 'code' },
+                    { data: 'customer' },
+                    { data: 'voucher' },
+					{
+                        data: null,
+                        render: function (data, type, row) {
+                            return '<button class="btn btn-danger mr-1" onclick="deleteRowTransactionList(' + row.id + ')">Delete</button><button class="btn btn-secondary" onclick="getRowTransactionList(' + row.id + ')">Edit</button><button class="btn btn-secondary ml-1" onclick="showPrint('+ row.id +')">Print</button>';
+                        }
+                    },
+                ],
+            });
+        });
+
+	function deleteRowTransactionList(id) {
+		if (confirm("Are you sure you want to delete this row?")) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('transactionList/delete'); ?>',
+				method: 'POST',
+				data: { id: id },
+				success: function(response) {
+					alert('Data berhasil dihapus');
+					$('#transaction-list').DataTable().ajax.reload();
+				}
+			});
+		}
+	}
+
+	function getRowTransactionList(id) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('transactionList/getDataId/'); ?>',
+				method: 'post',
+				data: { id: id },
+				success: function(response) {
+					const data = JSON.parse(response)
+					$('#id').val(data.id)
+					$('#name').val(data.name)
+					$('#start_date').val(data.start_date)
+					$('#end_date').val(data.end_date)
+					$('#amount').val(data.amount)
+					$('#discount').val(data.discount)
+					$('#update-voucher').modal('toggle')
+				}
+			});
+	}
+
+	function showPrint(id){
+		window.location = "<?php  echo site_url('transactionList/print');?>/"+id;
+	}
+
 </script>
 

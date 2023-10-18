@@ -1,5 +1,5 @@
 <?php
-class TransactionBook extends CI_Controller {
+class TransactionList extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('BookModel');
@@ -10,29 +10,14 @@ class TransactionBook extends CI_Controller {
 
     public function index() {
 		$book = $this->BookModel->getData();
-        $this->load->view('template/template', ['content' => $this->load->view('transaction/transaction-book',['book' => $book ], true) , 'script' => TRUE]);
+        $this->load->view('template/template', ['content' => $this->load->view('transaction/transaction-list',['book' => $book ], true) , 'script' => TRUE]);
     }
 
-	public function addToCart() {
-		$data = $this->BookModel->getDataId($this->input->post('book_id'));
-		try{
-			if($data->stock < $this->input->post('amount')){
-				$this->session->set_flashdata('message', 'Stock kurang');
-				redirect('transactionBook');
-			}
-			$data = array(
-				'id'      => 'B'.date("his"),
-				'qty'     => $this->input->post('amount'),
-				'price'   => $data->price,
-				'name'    => $data->title,
-				'book_id' => $data->id,
-			);
-			$this->cart->insert($data);
-			redirect('transactionBook');
-		}catch(Exception $e){
-			echo $e;
-		}
+	public function getData() {
+        $query = $this->TransactionBookModel->getData();
+		echo json_encode($query);
     }
+
 	public function remove($id) {
 		try{
 			$this->cart->remove($id);
@@ -69,22 +54,21 @@ class TransactionBook extends CI_Controller {
 			];
 			$this->TransactionBookModel->createTransactionBook($data);
 		}
+
+		$discount = ($voucher->discount / 100) * $this->cart->total();
 		$trx = [
 			'user_id'    => $this->session->userdata('id'),
-			'code'       => $code,
-			'total'      => $this->cart->total() - (@$voucher->discount / 100) * $this->cart->total() ?? 0,
+			'code'       =>   $code,
+			'total'      => $this->cart->total() - $discount ?? 0,
 			'payment'    => $this->input->post('payment'),
 			'returned'   => $this->input->post('return'),
 			'customer'   => $this->input->post('customer'),
 			'voucher'    => $voucher->name ?? '',
 		];
-	 	$this->TransactionBookModel->createTransactions($trx);
+		$get = $this->TransactionBookModel->createTransactions($trx);
 		$this->cart->destroy();
-		$trx = $this->TransactionBookModel->getDataCode($code);
-		$this->print($trx->id);
-		// redirect('transactionBook');
+		redirect('transactionBook');
 	}
-
 	public function print($id){
 		$trx = $this->TransactionBookModel->getDataId($id);
 		$trxbook = $this->TransactionBookModel->getDataCodeBook($trx->code);
