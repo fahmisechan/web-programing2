@@ -35,7 +35,6 @@ class Barang extends CI_Controller {
 	public function update(){
 		$data = array(
 			'id' =>  $this->input->post('id'),
-			'kode_barang' =>  $this->input->post('kode_barang'),
 			'nama_barang' =>  $this->input->post('nama_barang'),
 			'harga_barang' =>  $this->input->post('harga_barang'),
 			'stok' =>  $this->input->post('stok')
