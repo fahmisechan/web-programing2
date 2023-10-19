@@ -44,6 +44,12 @@
 	</div>
 
 	<!-- Nav Item - Charts -->
+	<li class="nav-item <?php if($this->uri->segment(1)=="barang") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
+		<a class="nav-link" href="<?= site_url('barang') ?>">
+			<i class="fas fa-fw fa-item"></i>
+			<span>Barang</span></a>
+	</li>
+
 	<li class="nav-item <?php if($this->uri->segment(1)=="book") {echo "active";} if($this->session->userdata('role') != 'admin') { echo "d-none"; }?> ">
 		<a class="nav-link" href="<?= site_url('book') ?>">
 			<i class="fas fa-fw fa-book"></i>

@@ -395,3 +395,62 @@
 
 </script>
 
+<!-- Script Category -->
+
+<script>
+        $(document).ready(function() {
+            $('#barang').DataTable({
+                ajax: {
+					url : '<?php echo site_url('barang/getData'); ?>',
+					dataSrc:""
+				},
+                columns: [
+                    { data: 'id' },
+                    { data: 'kode_barang' },
+                    { data: 'nama_barang' },
+                    { data: 'harga_barang' },
+                    { data: 'stok' },
+					{
+                        data: null,
+                        render: function (data, type, row) {
+                            return '<button class="btn btn-danger mr-1" onclick="deleteRowBarang(' + row.id + ')">Delete</button><button class="btn btn-secondary" onclick="getRowBarang(' + row.id + ')">Edit</button>';
+                        }
+                    },
+                ],
+            });
+        });
+
+	function deleteRowBarang(id) {
+		if (confirm("Are you sure you want to delete this row?")) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('barang/delete'); ?>',
+				method: 'POST',
+				data: { id: id },
+				success: function(response) {
+					alert('Data berhasil dihapus');
+					$('#barang').DataTable().ajax.reload();
+				}
+			});
+		}
+	}
+
+	function getRowBarang(id) {
+			// Make an AJAX request to delete the row
+			$.ajax({
+				url: '<?php echo site_url('barang/getDataId/'); ?>',
+				method: 'post',
+				data: { id: id },
+				success: function(response) {
+					const data = JSON.parse(response)
+					$('#id').val(data.id)
+					$('#kode_barang').val(data.kode_barang)
+					$('#nama_barang').val(data.nama_barang)
+					$('#harga_barang').val(data.harga_barang)
+					$('#stok').val(data.stok)
+					$('#update-barang').modal('toggle')
+				}
+			});
+	}
+
+</script>
